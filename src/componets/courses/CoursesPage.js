@@ -34,8 +34,7 @@ class CoursesPage extends Component {
 
     render() {
         const {course} = this.state
-        // const courses = this.props.courses.map(this.courseRow)
-        const courses = <div>xx</div>
+        const courses = this.props.courses.map(this.courseRow)
 
         return (
             <div>
