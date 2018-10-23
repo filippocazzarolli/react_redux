@@ -5,11 +5,13 @@ import {Provider} from 'react-redux'
 import routers from './routers'
 import * as serviceWorker from './serviceWorker'
 import configureStore from './store/configureStore'
+import { loadCourses } from './action/courseActions'
 import App from "./componets/App";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const store = configureStore()
+store.dispatch(loadCourses())
 
 ReactDOM.render(
     <Provider store={store}>
