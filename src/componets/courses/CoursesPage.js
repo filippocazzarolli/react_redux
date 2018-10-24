@@ -12,6 +12,7 @@ class CoursesPage extends Component {
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
+        this.onClickAddCourse = this.onClickAddCourse.bind(this);
     }
 
     onChangeTitle(event) {
@@ -25,6 +26,9 @@ class CoursesPage extends Component {
         this.props.actions.createCourse(course)
     }
 
+    onClickAddCourse(event) {
+        this.props.history.push("/course");
+    }
 
     render() {
         const {course} = this.state
@@ -33,6 +37,11 @@ class CoursesPage extends Component {
         return (
             <div>
                 <h1>Courses</h1>
+                <input 
+                    type="button" 
+                    value="Add Course" 
+                    className="btn btn-primary"
+                    onClick={this.onClickAddCourse}/>
                 <CourseList courses={courses}/>
                 <h2>Add Course</h2>
                 <input type="text" onChange={this.onChangeTitle} value={course.title}/>
