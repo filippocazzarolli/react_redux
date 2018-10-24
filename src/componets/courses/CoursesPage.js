@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import CourseList from "./CourseList";
 
 class CoursesPage extends Component {
     constructor(props, context) {
@@ -24,18 +25,15 @@ class CoursesPage extends Component {
         this.props.actions.createCourse(course)
     }
 
-    courseRow(course, index) {
-        return (<div key={index}>{course.title}</div>)
-    }
 
     render() {
         const {course} = this.state
-        const courses = this.props.courses.map(this.courseRow)
+        const {courses} = this.props
 
         return (
             <div>
                 <h1>Courses</h1>
-                {courses}
+                <CourseList courses={courses}/>
                 <h2>Add Course</h2>
                 <input type="text" onChange={this.onChangeTitle} value={course.title}/>
                 <input type="submit" value="Save" onClick={this.onClickSave}/>

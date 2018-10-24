@@ -6,12 +6,14 @@ import routers from './routers'
 import * as serviceWorker from './serviceWorker'
 import configureStore from './store/configureStore'
 import { loadCourses } from './action/courseActions'
+import { loadAuthors } from './action/authorAction'
 import App from "./componets/App";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
 const store = configureStore()
 store.dispatch(loadCourses())
+store.dispatch(loadAuthors())
 
 ReactDOM.render(
     <Provider store={store}>
