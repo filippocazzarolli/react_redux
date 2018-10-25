@@ -7,8 +7,9 @@ import * as serviceWorker from './serviceWorker'
 import configureStore from './store/configureStore'
 import { loadCourses } from './action/courseActions'
 import { loadAuthors } from './action/authorAction'
-import App from "./componets/App";
+import AppContainer from "./componets/AppContainer";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 const store = configureStore()
@@ -18,7 +19,7 @@ store.dispatch(loadAuthors())
 ReactDOM.render(
     <Provider store={store}>
         <Router>
-            <App children={routers}/>
+            <AppContainer children={routers}/>
         </Router>
     </Provider>,
 

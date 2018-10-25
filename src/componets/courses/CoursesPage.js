@@ -6,24 +6,7 @@ class CoursesPage extends Component {
     constructor(props, context) {
         super(props, context)
 
-        this.state = {
-            course: {title: ""}
-        }
-
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);
         this.onClickAddCourse = this.onClickAddCourse.bind(this);
-    }
-
-    onChangeTitle(event) {
-        let course = this.state.course
-        course.title = event.target.value
-        this.setState((course))
-    }
-
-    onClickSave(event) {
-        const {course} = this.state
-        this.props.actions.createCourse(course)
     }
 
     onClickAddCourse(event) {
@@ -31,7 +14,6 @@ class CoursesPage extends Component {
     }
 
     render() {
-        const {course} = this.state
         const {courses} = this.props
 
         return (
@@ -43,17 +25,13 @@ class CoursesPage extends Component {
                     className="btn btn-primary"
                     onClick={this.onClickAddCourse}/>
                 <CourseList courses={courses}/>
-                <h2>Add Course</h2>
-                <input type="text" onChange={this.onChangeTitle} value={course.title}/>
-                <input type="submit" value="Save" onClick={this.onClickSave}/>
             </div>
         )
     }
 }
 
 CoursesPage.propTypes = {
-    courses: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+    courses: PropTypes.array.isRequired
 }
 
 export default CoursesPage

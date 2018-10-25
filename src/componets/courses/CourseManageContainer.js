@@ -3,13 +3,20 @@ import {bindActionCreators} from 'redux'
 import * as courseActions from '../../action/courseActions'
 import CourseManagePage from './CourseManagePage';
 
+function getCourseById(courses, id) {
+    const course = courses.filter(course => course.id === id)
+    return course && course.length > 0 ? course[0] : null
+}
+
 function mapStateToProps(state, ownProps) {
-    // debugger
-    // const courseId = ownProps.params.id;
     const courseId = ownProps.match.params.id
-    console.log(courseId)
-    let course = {id: '', watchHref:'', title:'', authorId:'', length:'', category:'', }
-    const authorsFormattatedForDropdown = state.authors.map(author => {
+    let course = {id: '', watchHref:'', title:'', authorId:'', length:'', category:'' }
+
+    if (courseId && state.courses.length > 0) {
+        course = getCourseById(state.courses, courseId)
+    }
+
+    const authorsFormattedForDropdown = state.authors.map(author => {
         return {
             value: author.id,
             text: author.firstName + author.lastName
@@ -18,7 +25,7 @@ function mapStateToProps(state, ownProps) {
 
     return {
         course: course,
-        authors: authorsFormattatedForDropdown
+        authors: authorsFormattedForDropdown
     }
 }
 

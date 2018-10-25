@@ -1,9 +1,6 @@
 import * as Types from './actionTypes'
 import courseApi from '../api/mockCourseApi'
-
-export function createCourse(course) {
-    return { type: Types.CREATE_COURSE, course}
-}
+import * as loading from '../action/loadingAction'
 
 export function loadCoursesSuccess(courses) {
     return { type: Types.LOAD_COURSES_SUCCESS, courses}
@@ -20,9 +17,12 @@ export function updateCourseSuccess(course) {
 
 export function loadCourses() {
     return function(dispatch) {
+        dispatch(loading.loadingBegin())
         courseApi.getAllCourses().then(courses => {
+            dispatch(loading.loadingEndSuccess())
             dispatch(loadCoursesSuccess(courses))
         }).catch(error => {
+            dispatch(loading.loadingEndError(error))
             throw(error)
         })
     }
